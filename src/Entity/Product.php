@@ -19,11 +19,12 @@ class Product {
     #[Column, ManyToMany(Person::class, inversedBy: "products")]
     private Collection $buyers;
 
+    #[Column, ManyToOne(targetEntity: Store::class, inversedBy: "products")]
+    public Store $store;
+
     public function __construct(
         #[Column(type: "string", length: 15)]
         public string $name,
-        #[Column, ManyToOne(targetEntity: Store::class, inversedBy: "products")]
-        public Store $store,
         #[Column(type: "string", length: 50)]
         public string $description = '',
         #[Column(type: "string", length: 15)]
@@ -32,7 +33,7 @@ class Product {
         $this->buyers = new ArrayCollection();
     }
 
-    public function changeStore(Store $store): void {
+    public function setStore(Store $store): void {
         $this->store = $store;
     }
 
