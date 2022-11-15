@@ -21,7 +21,8 @@ class Person {
     
     #[OneToOne(
         targetEntity: Phone::class, 
-        mappedBy: "person"
+        mappedBy: "person",
+        cascade: ["persist", "remove"]
     )]
     public string $telephone;
 
