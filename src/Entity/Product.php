@@ -19,18 +19,19 @@ class Product {
     #[Column, ManyToMany(Person::class, inversedBy: "products")]
     private Collection $buyers;
 
-    #[Column, ManyToOne(targetEntity: Store::class, inversedBy: "products")]
+    #[Column(nullable: true), ManyToOne(targetEntity: Store::class, inversedBy: "products")]
     public Store $store;
 
     public function __construct(
-        #[Column(type: "string", length: 15)]
+        #[Column(type: "string", length: 15, nullable: true)]
         public string $name,
-        #[Column(type: "string", length: 50)]
+        #[Column(type: "string", length: 50, nullable: true)]
         public string $description = '',
-        #[Column(type: "string", length: 15)]
+        #[Column(type: "string", length: 15, nullable: true)]
         public readonly string $manufacturer = ''
     ) {
         $this->buyers = new ArrayCollection();
+
     }
 
     public function setStore(Store $store): void {

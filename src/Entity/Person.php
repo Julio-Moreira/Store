@@ -23,7 +23,7 @@ class Person {
         targetEntity: Phone::class, 
         mappedBy: "person",
         cascade: ["persist", "remove"]
-    )]
+    ), Column(nullable: true)]
     public string $telephone;
 
     public function __construct(

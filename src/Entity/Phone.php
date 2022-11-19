@@ -12,22 +12,20 @@ class Phone {
     #[Id, GeneratedValue, Column]
     public int $id;
 
-    #[Column(
-        unique: true, 
-        type: "string", 
-        length: 20
-    )]
-    public string $number;
-
     #[Column, OneToOne(
         targetEntity: Person::class, 
         inversedBy: "telephone"
     )]
     private Person $person;
 
-    public function __construct(Person $person) {
-        $this->person = $person;
-    }
+    public function __construct(
+        #[Column(
+            unique: true, 
+            type: "string", 
+            length: 20
+        )]
+        public $number
+    ) { }
 
     public function setPerson(Person $person): void {
         $this->person = $person;
