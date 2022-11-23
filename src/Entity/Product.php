@@ -16,7 +16,7 @@ class Product {
     #[Id, GeneratedValue, Column]
     public int $id;
 
-    #[Column, ManyToMany(Person::class, inversedBy: "products")]
+    #[Column, ManyToMany(Person::class, inversedBy: "products", cascade: ["persist"])]
     private Collection $buyers;
 
     #[Column(nullable: true), ManyToOne(targetEntity: Store::class, inversedBy: "products")]

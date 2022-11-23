@@ -15,7 +15,7 @@ class Store {
     #[Id, GeneratedValue, Column]
     public int $id;
 
-    #[Column, OneToMany(targetEntity: Product::class, mappedBy: "store")]
+    #[Column, OneToMany(targetEntity: Product::class, mappedBy: "store", cascade: ["persist", "remove"])]
     private Collection $products;
 
     public function __construct(

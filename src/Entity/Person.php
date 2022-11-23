@@ -23,8 +23,8 @@ class Person {
         targetEntity: Phone::class, 
         mappedBy: "person",
         cascade: ["persist", "remove"]
-    ), Column(nullable: true)]
-    public string $telephone;
+    )]
+    public ?Phone $telephone = null;
 
     public function __construct(
         #[Column(
@@ -49,7 +49,9 @@ class Person {
     }
 
     public function setPhone(Phone $phone): void {
-        $this->telephone = $phone->number;
+        if ($this->telephone == $phone) return;
+
+        $this->telephone = $phone;
         $phone->setPerson($this);
     }
 

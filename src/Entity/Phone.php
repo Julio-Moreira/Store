@@ -12,11 +12,11 @@ class Phone {
     #[Id, GeneratedValue, Column]
     public int $id;
 
-    #[Column, OneToOne(
+    #[OneToOne(
         targetEntity: Person::class, 
         inversedBy: "telephone"
     )]
-    private Person $person;
+    private ?Person $person = null;
 
     public function __construct(
         #[Column(
@@ -28,6 +28,9 @@ class Phone {
     ) { }
 
     public function setPerson(Person $person): void {
+        if ($this->person == $person) return;
+
         $this->person = $person;
+        $person->setPhone($this);
     }
 }
