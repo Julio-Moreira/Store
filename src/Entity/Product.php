@@ -16,10 +16,10 @@ class Product {
     #[Id, GeneratedValue, Column]
     public int $id;
 
-    #[Column, ManyToMany(Person::class, inversedBy: "products", cascade: ["persist"])]
+    #[ManyToMany(Person::class, inversedBy: "products", cascade: ["persist"])]
     private Collection $buyers;
 
-    #[Column(nullable: true), ManyToOne(targetEntity: Store::class, inversedBy: "products")]
+    #[ManyToOne(targetEntity: Store::class, inversedBy: "products")]
     public Store $store;
 
     public function __construct(

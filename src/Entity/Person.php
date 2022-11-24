@@ -16,7 +16,7 @@ class Person {
     #[Id, GeneratedValue, Column]
     public int $id;
     
-    #[Column, ManyToMany(Product::class, "buyers")]
+    #[ManyToMany(Product::class, "buyers")]
     private Collection $products;
     
     #[OneToOne(
