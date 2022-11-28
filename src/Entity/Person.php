@@ -16,7 +16,7 @@ class Person {
     #[Id, GeneratedValue, Column]
     public int $id;
     
-    #[ManyToMany(Product::class, "buyers")]
+    #[ManyToMany(targetEntity: Product::class, mappedBy: "buyers", cascade: ["persist"])]
     private Collection $products;
     
     #[OneToOne(

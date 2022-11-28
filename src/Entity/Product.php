@@ -46,7 +46,7 @@ class Product {
     }
 
     public function buyers(): Collection {
-        return $this->buyers();
+        return $this->buyers;
     }
 
     public function addBuyer(Person $person): void {
