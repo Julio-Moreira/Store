@@ -20,7 +20,7 @@ class Product {
     private Collection $buyers;
 
     #[ManyToOne(targetEntity: Store::class, inversedBy: "products")]
-    public Store $store;
+    public ?Store $store = null;
 
     public function __construct(
         #[Column(type: "string", length: 15, nullable: true)]
@@ -35,7 +35,10 @@ class Product {
     }
 
     public function setStore(Store $store): void {
+        if ($this->store == $store) return;
+
         $this->store = $store;
+        $store->addProduct($this);
     }
 
     public function getInfo(): string {

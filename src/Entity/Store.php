@@ -49,4 +49,10 @@ class Store {
         $this->products->add($product);
         $product->setStore($this);
     }
+
+    public function removeProduct(Product $product) {
+        if (!($this->products->contains($product))) return;
+        
+        $this->products->removeElement($product);
+    }
 }
